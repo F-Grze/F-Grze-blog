@@ -20,16 +20,16 @@ python3 -m http.server 8080        # 或任意静态服务器
 
 ## 部署到 GitHub Pages
 
-目标地址：**`https://f-grze.github.io/blog/`**
+目标地址：**`https://f-grze.github.io/F-Grze-blog/`**
 
-> 仓库名不能用中文 —— GitHub 规定仓库名只能包含 ASCII 字母、数字和 `.` `-` `_`（[官方文档](https://docs.github.com/zh/repositories/creating-and-managing-repositories/creating-a-new-repository)）。所以仓库叫 `blog`，仓库描述里写「个人博客」即可。
+> 仓库名不能用中文 —— GitHub 规定仓库名只能包含 ASCII 字母、数字和 `.` `-` `_`（[官方文档](https://docs.github.com/zh/repositories/creating-and-managing-repositories/creating-a-new-repository)）。所以仓库用 `F-Grze-blog`，仓库描述写「个人博客」。
 
 ```bash
 cd /workspace
 git init -b main
 git add -A
 git commit -m "init: F-Grze 个人博客（静态重构版）"
-git remote add origin https://github.com/F-Grze/blog.git
+git remote add origin https://github.com/F-Grze/F-Grze-blog.git
 git push -u origin main
 ```
 
@@ -37,20 +37,20 @@ git push -u origin main
 - Source: `Deploy from a branch`
 - Branch: `main` / `/ (root)` → Save
 
-约 1 分钟生效。`.nojekyll` 已就位，避免 Jekyll 忽略下划线开头的文件。全站已经按 `https://f-grze.github.io/blog/` 配好 canonical / og:url / sitemap / robots / 404 链接，**不用再改任何地址**。
+约 1 分钟生效。`.nojekyll` 已就位，避免 Jekyll 忽略下划线开头的文件。全站已经按 `https://f-grze.github.io/F-Grze-blog/` 配好 canonical / og:url / sitemap / robots / 404 链接，**不用再改任何地址**。
 
 ### 如果之后换仓库名
 
 ```bash
 cd /workspace
-grep -rl "f-grze.github.io/blog" . --include="*.html" --include="*.xml" --include="*.txt" \
-  | xargs sed -i 's#https://f-grze.github.io/blog#https://f-grze.github.io/新名字#g'
-sed -i 's#/blog/#/新名字/#g' 404.html
+grep -rl "f-grze.github.io/F-Grze-blog" . --include="*.html" --include="*.xml" --include="*.txt" \
+  | xargs sed -i 's#https://f-grze.github.io/F-Grze-blog#https://f-grze.github.io/新名字#g'
+sed -i 's#/F-Grze-blog/#/新名字/#g' 404.html
 ```
 
 ### 自定义域名（可选）
 
-放一个 `CNAME` 文件（内容为裸域名），DNS 加 `CNAME → f-grze.github.io`，再在 Pages 里勾选 Enforce HTTPS。此时还要把上面的 `f-grze.github.io/blog` 一并换成域名。
+放一个 `CNAME` 文件（内容为裸域名），DNS 加 `CNAME → f-grze.github.io`，再在 Pages 里勾选 Enforce HTTPS。此时还要把上面的 `f-grze.github.io/F-Grze-blog` 一并换成域名。
 
 ## 目录结构
 

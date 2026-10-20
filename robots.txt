@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://f-grze.github.io/blog/sitemap.xml
+Sitemap: https://f-grze.github.io/F-Grze-blog/sitemap.xml
