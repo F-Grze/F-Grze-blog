@@ -164,6 +164,18 @@ npx --yes esbuild@0.25.0 assets/js/main.js  --minify --outfile=assets/js/main.mi
 - 原 `posts/first.md` 与 `posts/2222.md` 是同一篇的两个副本，正文只有一句 "..."；`long-test-article.md` 结尾直接是 "## 测试用文章"。现在三篇合并为两篇可读正文，保留原标题与原意，并明确标注"待续"。
 - 相册、友链里的图片都指向 `bu.dusays.com` 的测试图，友链指向 PRTS wiki。新站只保留提供的三张照片，不做虚构内容。
 
+## 视觉风格
+
+对齐上游模板 [heiehiehi/XinghuisamaBlogs](https://github.com/heiehiehi/XinghuisamaBlogs)（XHBlogs）：
+
+- 背景：`#a18cd1 → #fbc2eb → #a1c4fd → #c2e9fb` 的呼吸渐变（`translate3d` 合成层动画，40s，尊重 `prefers-reduced-motion`）
+- 卡片：半透明白 `rgba(255,255,255,.45)` + `backdrop-blur(10px)` + 24px 圆角 + 大阴影
+- 顶栏：`bg-white/42` + `blur-xl`，滚动隐藏/回弹
+- 字体：系统衬线栈（Georgia / Songti SC / Noto Serif SC），不拉 Web Font
+- 强调：Hero 橙 `#F97316` + 黄 `#EAB308`（沿用 v8.13 双色调）
+
+导航栏固定 8 个入口：**首页 / 文章归档 / 摄影 / 项目 / 友链 / 音乐 / 天气 / 关于**，当前页自动高亮；移动端收进抽屉。
+
 ## 页面覆盖情况
 
 13 个页面：首页、关于、摄影、项目、友链、归档、音乐、**天气**、文章归档、两篇文章、一篇杂谈、404。导航、页脚、搜索、主题切换在全部页面一致。

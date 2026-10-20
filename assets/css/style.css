@@ -1162,11 +1162,69 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .hero-search svg { width: 18px; height: 18px; flex: 0 0 auto; }
 .hero-search kbd {
   margin-left: auto;
-  font-family: var(--font-mono); font-size: .5625rem; letter-spacing: .1em;
-  border: 1px solid var(--ink-3); border-radius: 3px; padding: .2rem .4rem; color: var(--paper-3);
+  font-family: var(--font-mono); font-size: .625rem; letter-spacing: .1em;
+  border: 1px solid var(--ink-3); border-radius: 3px; padding: .2rem .4rem; color: var(--paper-2);
 }
 [data-theme="dark"] .hero-search button { background: rgba(24, 24, 24, .78); border-color: rgba(255, 255, 255, .1); }
 @media (max-width: 640px) { .hero-search { margin-top: 1rem; } }
 
 /* 首页区块间距与源站一致（mt-12） */
 .section { margin-top: clamp(3rem, 6vw, 5rem); }
+
+/* ============================================================
+   20. 对齐 XHBlogs 模板：呼吸渐变底 + 玻璃顶栏
+   ============================================================ */
+body {
+  background: #f7f7fb;
+  background-image: none;
+  position: relative;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: -10%;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(-45deg, #a18cd1, #fbc2eb, #a1c4fd, #c2e9fb);
+  opacity: .42;
+  animation: gradient-drift 40s ease-in-out infinite alternate;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+[data-theme="dark"] body { background: #080a10; }
+[data-theme="dark"] body::before { opacity: .16; }
+@keyframes gradient-drift {
+  from { transform: translate3d(-4%, -3%, 0) scale(1.06); }
+  to   { transform: translate3d(4%, 3%, 0) scale(1.14); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body::before { animation: none; }
+}
+
+/* 顶栏与卡片更接近模板的透明度 */
+.site-head {
+  background: rgba(255, 255, 255, .42);
+  border-bottom-color: rgba(255, 255, 255, .35);
+}
+.site-head.is-scrolled { border-bottom-color: rgba(255, 255, 255, .55); }
+[data-theme="dark"] .site-head { background: rgba(15, 18, 26, .55); border-bottom-color: rgba(255, 255, 255, .06); }
+.card, .feature, .album, .chatter, .timecard, .item-card, .side-card, .quote-bar {
+  background: rgba(255, 255, 255, .45);
+  border-color: rgba(255, 255, 255, .6);
+}
+[data-theme="dark"] .card,
+[data-theme="dark"] .feature,
+[data-theme="dark"] .chatter,
+[data-theme="dark"] .timecard,
+[data-theme="dark"] .item-card,
+[data-theme="dark"] .side-card,
+[data-theme="dark"] .quote-bar {
+  background: rgba(20, 23, 32, .55);
+  border-color: rgba(255, 255, 255, .08);
+}
+/* 顶栏导航：8 个入口，收紧字距避免换行 */
+.nav { gap: clamp(.7rem, 1.15vw, 1.15rem); }
+.nav a { font-size: .625rem; letter-spacing: .1em; white-space: nowrap; }
+.brand { font-size: 1.05rem; }
+@media (max-width: 1180px) { .nav a { font-size: .5625rem; letter-spacing: .06em; } }
+@media (max-width: 1024px) { .nav { gap: .55rem; } .nav a { font-size: .5rem; letter-spacing: .04em; } }

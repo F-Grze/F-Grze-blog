@@ -136,6 +136,14 @@
     }
   }
 
+  /* ---------- 6a. 当前页面高亮 ---------- */
+  const norm = u => u.replace(/index\.html$/, '').replace(/\/$/, '') || '/';
+  const here = norm(location.pathname);
+  $$('.nav a, .mobile-menu a').forEach(a => {
+    const abs = new URL(a.getAttribute('href'), location.href).pathname;
+    if (norm(abs) === here) a.setAttribute('aria-current', 'true');
+  });
+
   /* ---------- 6. 当前区块高亮 ---------- */
   const navLinks = $$('.nav a[href^="#"]');
   const sections = navLinks.map(a => $(a.getAttribute('href'))).filter(Boolean);
