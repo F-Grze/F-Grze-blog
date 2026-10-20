@@ -704,7 +704,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .foot-rule { display: flex; align-items: center; gap: .8rem; font-family: var(--font-mono); font-size: .625rem; letter-spacing: .26em; text-transform: uppercase; color: var(--paper-2); padding: 2.5rem 0 2.75rem; }
 .foot-rule::before, .foot-rule::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
 .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); padding-bottom: 3rem; }
-.foot-grid h3 { font-size: 1.5rem; font-style: italic; margin-top: .5rem; }
+.foot-grid h2 { font-size: 1.5rem; font-style: italic; margin-top: .5rem; }
 .foot-grid p { margin-top: .7rem; font-size: .875rem; color: var(--paper-1); max-width: 22rem; }
 .foot-list { margin-top: .7rem; display: flex; flex-direction: column; gap: .45rem; font-size: .875rem; }
 .foot-list a { color: var(--paper-1); transition: color .2s; width: fit-content; border-bottom: 1px solid var(--paper-3); }
@@ -938,3 +938,154 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .activity a { grid-template-columns: 5rem 1fr; row-gap: .3rem; }
   .activity .kind { display: none; }
 }
+
+/* ============================================================
+   15. 站内搜索
+   ============================================================ */
+.search-modal {
+  position: fixed; inset: 0; z-index: 160;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: clamp(3rem, 12vh, 9rem) 1.25rem 2rem;
+  background: rgba(10, 10, 10, .55);
+  backdrop-filter: blur(3px);
+}
+.search-modal[hidden] { display: none; }
+.search-box {
+  width: 100%; max-width: 40rem;
+  background: var(--ink-0);
+  border: 1px solid var(--ink-3);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 64px -24px rgba(0, 0, 0, .5);
+  overflow: hidden;
+}
+.search-field { display: flex; align-items: center; gap: .75rem; padding: 1rem 1.15rem; border-bottom: 1px solid var(--ink-3); }
+.search-field svg { width: 18px; height: 18px; color: var(--paper-2); flex: 0 0 auto; }
+.search-field input {
+  flex: 1; min-width: 0; border: 0; background: none; outline: none;
+  font-family: var(--font-body); font-size: 1rem; color: var(--paper-0);
+}
+.search-field input::placeholder { color: var(--paper-3); }
+.search-field input::-webkit-search-cancel-button,
+.search-field input::-webkit-search-decoration { -webkit-appearance: none; appearance: none; }
+.search-field kbd {
+  font-family: var(--font-mono); font-size: .5625rem; letter-spacing: .1em;
+  border: 1px solid var(--ink-3); border-radius: 2px; padding: .15rem .35rem; color: var(--paper-2);
+}
+.search-results { max-height: min(52vh, 24rem); overflow-y: auto; }
+.search-results li { border-bottom: 1px solid var(--ink-3); }
+.search-results li:last-child { border-bottom: 0; }
+.search-results a { display: block; padding: .8rem 1.15rem; }
+.search-results a:hover, .search-results a.is-active { background: var(--ink-1); }
+.search-results .r-title { font-family: var(--font-display); font-size: 1rem; color: var(--paper-0); }
+.search-results .r-meta { margin-top: .2rem; font-family: var(--font-mono); font-size: .5625rem; letter-spacing: .14em; text-transform: uppercase; color: var(--paper-2); }
+.search-results mark { background: color-mix(in srgb, var(--accent) 22%, transparent); color: inherit; }
+.search-empty { padding: 1.5rem 1.15rem; font-size: .875rem; color: var(--paper-2); }
+.search-hint { margin: 0; padding: .6rem 1.15rem; border-top: 1px solid var(--ink-3); font-family: var(--font-mono); font-size: .5625rem; letter-spacing: .16em; text-transform: uppercase; color: var(--paper-3); }
+
+/* ============================================================
+   16. 阅读进度 + 目录 + 代码复制
+   ============================================================ */
+.reading-progress {
+  position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 120;
+  background: var(--accent); transform: scaleX(0); transform-origin: 0 50%;
+  will-change: transform; pointer-events: none;
+}
+.toc {
+  position: fixed; top: calc(var(--head-h) + 3rem); right: 1.5rem;
+  width: 13rem; max-height: 60vh; overflow-y: auto;
+  border-left: 1px solid var(--ink-3); padding-left: .9rem;
+  font-family: var(--font-mono); font-size: .625rem; line-height: 1.9; letter-spacing: .08em;
+  display: none;
+}
+.toc a { display: block; color: var(--paper-2); transition: color .2s; }
+.toc a:hover { color: var(--paper-0); }
+.toc a.is-current { color: var(--accent); }
+.toc .toc-label { display: block; margin-bottom: .5rem; letter-spacing: .2em; text-transform: uppercase; color: var(--paper-3); }
+.toc .lv3 { padding-left: .9rem; }
+@media (min-width: 1240px) { .toc { display: block; } }
+
+.code-block { position: relative; }
+.copy-btn {
+  position: absolute; top: .5rem; right: .5rem;
+  font-family: var(--font-mono); font-size: .5625rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--paper-2); background: var(--ink-0); border: 1px solid var(--ink-3);
+  border-radius: 2px; padding: .2rem .45rem; opacity: 0; transition: opacity .2s, color .2s, border-color .2s;
+}
+.code-block:hover .copy-btn, .copy-btn:focus-visible { opacity: 1; }
+.copy-btn[data-copied] { color: var(--ok); border-color: var(--ok); }
+
+/* ============================================================
+   17. 面包屑 / 标签筛选
+   ============================================================ */
+.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; padding-top: calc(var(--head-h) + 1.75rem); font-family: var(--font-mono); font-size: .5625rem; letter-spacing: .16em; text-transform: uppercase; color: var(--paper-3); }
+.crumbs a { color: var(--paper-2); }
+.crumbs a:hover { color: var(--paper-0); }
+.crumbs span[aria-current] { color: var(--paper-1); }
+.crumbs .sep { color: var(--paper-3); }
+
+.tag-filter { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.75rem; }
+.tag-filter button {
+  font-family: var(--font-mono); font-size: .5625rem; letter-spacing: .14em; text-transform: uppercase;
+  border: 1px solid var(--ink-3); border-radius: 2px; padding: .3rem .6rem; color: var(--paper-1);
+  background: var(--ink-0); transition: background-color .2s, color .2s, border-color .2s;
+}
+.tag-filter button:hover { border-color: var(--paper-3); color: var(--paper-0); }
+.tag-filter button[aria-pressed="true"] { background: var(--paper-0); color: var(--ink-0); border-color: var(--paper-0); }
+.archive-item[hidden] { display: none; }
+
+/* ============================================================
+   18. 天气页
+   ============================================================ */
+.weather-search { display: flex; gap: .6rem; margin-top: 2rem; max-width: 30rem; }
+.weather-search input {
+  flex: 1; min-width: 0; padding: .7rem .85rem; border: 1px solid var(--ink-3); border-radius: var(--radius);
+  background: var(--ink-0); font-family: var(--font-body); font-size: .9375rem; color: var(--paper-0);
+}
+.weather-search button { padding: .7rem 1.1rem; border: 1px solid var(--paper-0); border-radius: var(--radius); background: var(--paper-0); color: var(--ink-0); font-family: var(--font-mono); font-size: .625rem; letter-spacing: .14em; text-transform: uppercase; }
+#weather-app { min-height: 21rem; }
+.weather-now { margin-top: 2.5rem; min-height: 12rem; border: 1px solid var(--ink-3); border-radius: var(--radius); background: var(--ink-1); padding: clamp(1.35rem, 3vw, 2rem); }
+.weather-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+.weather-city { font-family: var(--font-mono); font-size: .625rem; letter-spacing: .2em; text-transform: uppercase; color: var(--paper-2); }
+.weather-temp { font-family: var(--font-display); font-size: clamp(3.2rem, 8vw, 4.6rem); line-height: 1; letter-spacing: -.04em; margin-top: .4rem; font-variant-numeric: tabular-nums; }
+.weather-temp small { font-size: .3em; vertical-align: super; color: var(--paper-2); }
+.weather-desc { margin-top: .5rem; font-size: 1rem; color: var(--paper-1); }
+.weather-facts { display: flex; gap: 1.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+.weather-facts div { font-family: var(--font-mono); font-size: .625rem; letter-spacing: .12em; text-transform: uppercase; color: var(--paper-2); }
+.weather-facts b { display: block; margin-top: .25rem; font-family: var(--font-body); font-size: 1rem; letter-spacing: 0; text-transform: none; color: var(--paper-0); }
+.forecast { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .75rem; margin-top: 1.5rem; }
+.forecast div { min-height: 5.4rem; border: 1px solid var(--ink-3); border-radius: var(--radius); padding: .85rem .5rem; text-align: center; background: var(--ink-0); }
+.forecast .d { font-family: var(--font-mono); font-size: .5625rem; letter-spacing: .12em; text-transform: uppercase; color: var(--paper-2); }
+.forecast .t { margin-top: .45rem; font-size: .9375rem; font-variant-numeric: tabular-nums; }
+.forecast .t small { color: var(--paper-2); font-size: .75rem; }
+.forecast .ic { margin-top: .45rem; font-size: 1.1rem; line-height: 1; color: var(--paper-1); }
+.skeleton { background: linear-gradient(90deg, var(--ink-2) 25%, var(--ink-1) 37%, var(--ink-2) 63%); background-size: 400% 100%; animation: shimmer 1.4s ease infinite; border-radius: 2px; }
+@keyframes shimmer { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+.weather-note { margin-top: 1.5rem; font-family: var(--font-mono); font-size: .5625rem; letter-spacing: .1em; color: var(--paper-3); }
+.weather-error { margin-top: 2.5rem; min-height: 6rem; border: 1px solid var(--ink-3); border-left: 2px solid var(--accent); border-radius: var(--radius); padding: 1rem 1.15rem; background: var(--ink-1); font-size: .875rem; color: var(--paper-1); }
+.weather-error button { margin-left: .75rem; font-family: var(--font-mono); font-size: .625rem; letter-spacing: .14em; text-transform: uppercase; border-bottom: 1px solid var(--paper-3); }
+@media (max-width: 820px) { .forecast { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .forecast { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* 灯箱翻页控件 */
+.lightbox-nav { position: absolute; left: 50%; bottom: 1.1rem; transform: translateX(-50%); display: flex; align-items: center; gap: .9rem; }
+.lightbox-arrow {
+  width: 2.5rem; height: 2.5rem; display: grid; place-items: center;
+  border: 1px solid rgba(255, 255, 255, .28); border-radius: var(--radius);
+  color: #fff; font-size: 1rem; line-height: 1;
+}
+.lightbox-arrow:hover { background: rgba(255, 255, 255, .14); }
+.lightbox-arrow[hidden] { display: none; }
+.lightbox-count { font-family: var(--font-mono); font-size: .625rem; letter-spacing: .2em; color: rgba(255, 255, 255, .72); }
+
+/* 搜索关闭键 */
+.search-close {
+  font-family: var(--font-mono); font-size: .5625rem; letter-spacing: .12em;
+  border: 1px solid var(--ink-3); border-radius: 2px; padding: .2rem .45rem; color: var(--paper-2);
+}
+.search-close:hover { color: var(--paper-0); border-color: var(--paper-3); }
+
+/* 面包屑放进页头时不再重复留白 */
+.page-head .crumbs, .article-head .crumbs { padding-top: 0; margin-bottom: 1.4rem; }
+
+/* 搜索按钮在窄屏也保留 */
+@media (max-width: 860px) { .head-tools .search-btn { display: inline-grid; } }

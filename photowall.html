@@ -16,7 +16,7 @@
 <meta property="og:description" content="夜色收集：深圳湾、山口的路灯与一张海上日出的油画习作。">
 <meta property="og:image" content="https://f-grze.github.io/F-Grze-blog/assets/img/og-cover.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.min.css">
 <script>
   (function () {
     try {
@@ -29,7 +29,7 @@
   })();
 </script>
 </head>
-<body>
+<body data-base="">
 <a class="skip" href="#main">跳到主要内容</a>
 
 <header class="site-head">
@@ -46,6 +46,9 @@
       <a class="icon-btn" href="feed.xml" aria-label="RSS 订阅">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.6" fill="currentColor" stroke="none"/></svg>
       </a>
+      <button class="icon-btn search-btn" id="search-open" type="button" aria-label="站内搜索（⌘K）" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      </button>
       <button class="icon-btn" id="theme-toggle" type="button" aria-label="切换深浅色">
         <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.2M12 19.8V22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2 12h2.2M19.8 12H22M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
         <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" style="display:none"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
@@ -67,6 +70,7 @@
 
 <main id="main">
   <header class="wrap page-head">
+    <nav class="crumbs" aria-label="面包屑"><a href="./">首页</a><span class="sep" aria-hidden="true">/</span><span aria-current="page">摄影</span></nav>
     <p class="kicker">PHOTOGRAPHS · 2024—2026</p>
     <h1>摄影</h1>
     <p class="page-sub">三张照片，三种不同的光。点开可以看大图。</p>
@@ -85,7 +89,7 @@
                 data-caption="深圳湾 · 塔吊与月色 · 2026.01"
                 data-alt="夜色里的深圳湾：塔吊亮着施工灯，水面拖着蓝白色的倒影"
                 data-w="1376" data-h="768">
-          <img src="assets/img/hero-city-1024.webp" srcset="assets/img/hero-city-640.webp 640w, assets/img/hero-city-1024.webp 1024w, assets/img/hero-city-1376.webp 1376w" sizes="(max-width: 900px) 100vw, 66vw" width="1024" height="572" loading="lazy" fetchpriority="low" decoding="async"
+          <img src="assets/img/hero-city-1024.webp" srcset="assets/img/hero-city-640.webp 640w, assets/img/hero-city-1024.webp 1024w, assets/img/hero-city-1376.webp 1376w" sizes="(max-width: 900px) 100vw, 66vw" width="1024" height="572" loading="lazy" decoding="async"
                alt="夜色里的深圳湾：塔吊亮着施工灯，水面拖着蓝白色的倒影">
           <figcaption><span>深圳湾 · 塔吊与月色</span><span>2026.01</span></figcaption>
         </button>
@@ -97,7 +101,7 @@
                 data-caption="山口 · 路灯与半个月亮 · 2025.10"
                 data-alt="黄昏山口的橙色路灯与月亮"
                 data-w="1024" data-h="1024">
-          <img src="assets/img/album-lamp-640.webp" srcset="assets/img/album-lamp-320.webp 320w, assets/img/album-lamp-640.webp 640w, assets/img/album-lamp-1024.webp 1024w" sizes="(max-width: 900px) 100vw, 33vw" width="640" height="640" loading="lazy" fetchpriority="low" decoding="async"
+          <img src="assets/img/album-lamp-640.webp" srcset="assets/img/album-lamp-320.webp 320w, assets/img/album-lamp-640.webp 640w, assets/img/album-lamp-1024.webp 1024w" sizes="(max-width: 900px) 100vw, 33vw" width="640" height="640" loading="lazy" decoding="async"
                alt="黄昏时分的山口，一盏橙色路灯亮着，天上挂着半个月亮">
           <figcaption><span>山口 · 路灯与月亮</span><span>2025.10</span></figcaption>
         </button>
@@ -109,7 +113,7 @@
                 data-caption="晨光 · 海面（油画习作）· 2024.08"
                 data-alt="海上日出的油画习作"
                 data-w="768" data-h="1376">
-          <img src="assets/img/post-sunrise-480.webp" srcset="assets/img/post-sunrise-480.webp 480w, assets/img/post-sunrise-768.webp 768w" sizes="(max-width: 900px) 100vw, 33vw" width="480" height="860" loading="lazy" fetchpriority="low" decoding="async"
+          <img src="assets/img/post-sunrise-480.webp" srcset="assets/img/post-sunrise-480.webp 480w, assets/img/post-sunrise-768.webp 768w" sizes="(max-width: 900px) 100vw, 33vw" width="480" height="860" loading="lazy" decoding="async"
                alt="一幅海上日出的油画：粉橘色的云、金色的海面与远处的小船">
           <figcaption><span>晨光 · 海面（习作）</span><span>2024.08</span></figcaption>
         </button>
@@ -136,7 +140,7 @@
     <div class="foot-grid">
       <div>
         <div class="section-num">// ABOUT</div>
-        <h3>F-Grze · 夏林</h3>
+        <h2>F-Grze · 夏林</h2>
         <p>机械设计制造及其自动化，业余玩摄影与摄像。这里放文章、照片，和一些没头没尾的想法。</p>
       </div>
       <div>
@@ -147,6 +151,7 @@
           <li><a href="projects.html">项目</a></li>
           <li><a href="friends.html">友链</a></li>
           <li><a href="music.html">音乐</a></li>
+          <li><a href="weather.html">天气</a></li>
           <li><a href="about.html">关于</a></li>
         </ul>
       </div>
@@ -166,6 +171,19 @@
     </div>
   </div>
 </footer>
-<script src="assets/js/main.js" defer></script>
+<!-- search -->
+<div class="search-modal" id="search" role="dialog" aria-modal="true" aria-label="站内搜索" hidden>
+  <div class="search-box">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input id="search-input" type="search" placeholder="搜索文章、摄影、页面…" autocomplete="off" spellcheck="false" aria-label="输入关键词" aria-controls="search-results">
+      <button type="button" class="search-close" id="search-close" aria-label="关闭搜索">ESC</button>
+    </div>
+    <ul class="search-results" id="search-results" role="listbox" aria-label="搜索结果"></ul>
+    <p class="search-hint">↑↓ 选择 · ↵ 打开 · ⌘K / Ctrl+K 唤起</p>
+  </div>
+</div>
+
+<script src="assets/js/main.min.js" defer></script>
 </body>
 </html>

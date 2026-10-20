@@ -16,7 +16,7 @@
 <meta property="og:description" content="跑图神经网络筛选时的一次串台：如果把源石结晶视作极端暴烈的分子自组装，它会怎样结合靶点？">
 <meta property="og:image" content="https://f-grze.github.io/F-Grze-blog/assets/img/og-cover.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/style.min.css">
 <script>
   (function () {
     try {
@@ -29,7 +29,7 @@
   })();
 </script>
 </head>
-<body>
+<body data-base="../">
 <a class="skip" href="#main">跳到主要内容</a>
 
 <header class="site-head">
@@ -46,6 +46,9 @@
       <a class="icon-btn" href="../feed.xml" aria-label="RSS 订阅">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.6" fill="currentColor" stroke="none"/></svg>
       </a>
+      <button class="icon-btn search-btn" id="search-open" type="button" aria-label="站内搜索（⌘K）" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      </button>
       <button class="icon-btn" id="theme-toggle" type="button" aria-label="切换深浅色">
         <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.2M12 19.8V22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2 12h2.2M19.8 12H22M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
         <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" style="display:none"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
@@ -67,6 +70,7 @@
 <main id="main">
   <article>
     <header class="wrap article-head">
+    <nav class="crumbs" aria-label="面包屑"><a href="../">首页</a><span class="sep" aria-hidden="true">/</span><a href="../timeline.html">归档</a><span class="sep" aria-hidden="true">/</span><span aria-current="page">源石结晶与目标蛋白结合的猜想</span></nav>
       <p class="kicker">CHATTER · 2026.03.25</p>
       <h1>源石结晶与目标蛋白<br>结合的猜想</h1>
       <div class="article-meta">
@@ -111,7 +115,7 @@
     <div class="foot-grid">
       <div>
         <div class="section-num">// ABOUT</div>
-        <h3>F-Grze · 夏林</h3>
+        <h2>F-Grze · 夏林</h2>
         <p>机械设计制造及其自动化，业余玩摄影与摄像。这里放文章、照片，和一些没头没尾的想法。</p>
       </div>
       <div>
@@ -122,6 +126,7 @@
           <li><a href="../projects.html">项目</a></li>
           <li><a href="../friends.html">友链</a></li>
           <li><a href="../music.html">音乐</a></li>
+          <li><a href="../weather.html">天气</a></li>
           <li><a href="../about.html">关于</a></li>
         </ul>
       </div>
@@ -141,6 +146,19 @@
     </div>
   </div>
 </footer>
-<script src="../assets/js/main.js" defer></script>
+<!-- search -->
+<div class="search-modal" id="search" role="dialog" aria-modal="true" aria-label="站内搜索" hidden>
+  <div class="search-box">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input id="search-input" type="search" placeholder="搜索文章、摄影、页面…" autocomplete="off" spellcheck="false" aria-label="输入关键词" aria-controls="search-results">
+      <button type="button" class="search-close" id="search-close" aria-label="关闭搜索">ESC</button>
+    </div>
+    <ul class="search-results" id="search-results" role="listbox" aria-label="搜索结果"></ul>
+    <p class="search-hint">↑↓ 选择 · ↵ 打开 · ⌘K / Ctrl+K 唤起</p>
+  </div>
+</div>
+
+<script src="../assets/js/main.min.js" defer></script>
 </body>
 </html>
