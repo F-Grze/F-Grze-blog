@@ -426,8 +426,7 @@
       links[active].scrollIntoView({ block: 'nearest' });
     };
 
-    const openBtn = $('#search-open');
-    if (openBtn) openBtn.addEventListener('click', openSearch);
+    $$('[data-search-open]').forEach(btn => btn.addEventListener('click', openSearch));
     $('#search-close').addEventListener('click', closeSearch);
     modal.addEventListener('click', e => { if (e.target === modal) closeSearch(); });
     input.addEventListener('input', e => search(e.target.value));

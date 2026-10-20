@@ -3,40 +3,76 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>404 · 页面走丢了 | F-Grze の光影日志</title>
-<meta name="robots" content="noindex">
+<title>404 · 信号丢失 | F-Grze の光影日志</title>
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/F-Grze-blog/favicon.svg" type="image/svg+xml">
 <style>
-  :root { --ink:#fff; --paper:#111; --muted:#6b7280; --line:#e3e3e1; --accent:#b45309; }
-  @media (prefers-color-scheme: dark) { :root { --ink:#0a0a0a; --paper:#f2f1ef; --muted:#a3a29e; --line:#2c2c2a; --accent:#e7a45c; } }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; min-height: 100svh; display: grid; place-items: center;
-    background: var(--ink); color: var(--paper); padding: 2rem;
-    font-family: Georgia, "Songti SC", "Noto Serif SC", "PingFang SC", serif;
-    background-image: linear-gradient(rgba(127,127,127,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(127,127,127,.06) 1px, transparent 1px);
-    background-size: 32px 32px;
+  :root{
+    --ink-0:#fff; --ink-1:#fafafa; --ink-3:#e3e3e1;
+    --paper-0:#111; --paper-1:#33383f; --paper-2:#5b6470; --paper-3:#8b939e;
+    --accent:#f97316; --grid:rgba(17,17,17,.035);
+    --serif:Georgia,"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
   }
-  main { max-width: 34rem; }
-  .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .6875rem; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); }
-  h1 { font-size: clamp(4rem, 18vw, 8rem); font-style: italic; line-height: .9; letter-spacing: -.05em; margin: 1rem 0 .5rem; }
-  p { color: var(--muted); line-height: 1.8; }
-  .rule { height: 1px; background: var(--line); margin: 1.75rem 0; }
-  a { color: var(--paper); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px; }
-  a:hover { color: var(--accent); }
-  .links { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: .9375rem; }
+  @media (prefers-color-scheme: dark){
+    :root{--ink-0:#0a0a0a;--ink-1:#121212;--ink-3:#2c2c2a;--paper-0:#f2f1ef;--paper-1:#d3d2ce;--paper-2:#a3a29e;--paper-3:#7c7b78;--accent:#f59e0b;--grid:rgba(255,255,255,.035);}
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; min-height:100svh; display:flex; align-items:center;
+    background:var(--ink-0); color:var(--paper-0); font-family:var(--serif); line-height:1.7;
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:32px 32px;
+  }
+  .wrap{width:100%; max-width:64rem; margin:0 auto; padding:clamp(2rem,6vw,4rem) clamp(1.25rem,4vw,2.5rem)}
+  .mono{font-family:var(--mono); font-size:.625rem; letter-spacing:.26em; text-transform:uppercase; color:var(--paper-2)}
+  .kicker{display:flex; align-items:center; gap:.8rem; margin-bottom:1.5rem}
+  .kicker::before{content:""; width:2rem; height:1px; background:var(--paper-3)}
+  .code{
+    font-family:var(--serif); font-style:italic; font-weight:700;
+    font-size:clamp(5rem,26vw,13rem); line-height:.82; letter-spacing:-.06em;
+    color:var(--accent); margin:0;
+  }
+  h1{font-family:var(--serif); font-style:italic; font-size:clamp(1.6rem,4vw,2.4rem); margin:1.25rem 0 .5rem; letter-spacing:-.02em}
+  p{color:var(--paper-1); max-width:34rem; margin:.5rem 0 0; font-size:1rem}
+  .rule{height:1px; background:var(--ink-3); margin:2.25rem 0 1.5rem; max-width:34rem}
+  .links{display:flex; flex-wrap:wrap; gap:.6rem 1.75rem; font-size:.9375rem}
+  .links a{color:var(--paper-0); text-decoration:none; border-bottom:1px solid var(--paper-3); padding-bottom:2px; transition:color .2s,border-color .2s}
+  .links a:hover{color:var(--accent); border-color:var(--accent)}
+  .foot{margin-top:3rem; display:flex; flex-wrap:wrap; gap:.5rem 1.5rem}
+  .foot span{font-family:var(--mono); font-size:.5625rem; letter-spacing:.2em; text-transform:uppercase; color:var(--paper-3)}
+  .hud{position:fixed; top:1.25rem; right:1.5rem; text-align:right; line-height:2.2}
+  @media (max-width:640px){ .hud{display:none} }
 </style>
 </head>
 <body>
-<main>
-  <div class="mono">// ERROR 404 · PAGE NOT FOUND</div>
-  <h1>走丢了</h1>
-  <p>这个地址没有对应的页面。可能是链接改过，也可能是我把文件放错了柜子。</p>
-  <div class="rule"></div>
-  <div class="links">
+<div class="hud mono" aria-hidden="true">
+  <div>// TRANSMISSION</div>
+  <div>FRAME 0404 · LOST</div>
+</div>
+
+<main class="wrap">
+  <div class="kicker mono">// ERROR 404 · SIGNAL LOST</div>
+  <p class="code" aria-hidden="true">404</p>
+  <h1>这一帧没有画面</h1>
+  <p>你要找的地址不存在，或者已经被我挪走了。可能是链接写错了，也可能是这篇文章还没写完。</p>
+
+  <div class="rule" aria-hidden="true"></div>
+
+  <nav class="links" aria-label="常用入口">
     <a href="/F-Grze-blog/">回首页</a>
     <a href="/F-Grze-blog/posts/">文章归档</a>
+    <a href="/F-Grze-blog/photowall.html">摄影</a>
+    <a href="/F-Grze-blog/about.html">关于</a>
     <a href="/F-Grze-blog/feed.xml">RSS</a>
+  </nav>
+
+  <div class="foot" aria-hidden="true">
+    <span>F-GRZE · LIGHT-LOG</span>
+    <span>EST. 2026</span>
   </div>
 </main>
 </body>

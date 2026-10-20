@@ -1089,3 +1089,84 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* 搜索按钮在窄屏也保留 */
 @media (max-width: 860px) { .head-tools .search-btn { display: inline-grid; } }
+
+/* ============================================================
+   19. 向源站视觉靠拢：橙色 Hero、玻璃卡片、扫描线
+   ============================================================ */
+.hero h1 { color: #f97316; text-shadow: 0 2px 44px rgba(0, 0, 0, .55), 0 1px 2px rgba(0, 0, 0, .45); }
+.hero-sub { color: #eab308; }
+.hero-rule { color: rgba(255, 255, 255, .78); }
+.hero-inner .kicker { color: #eab308; }
+.hero::after {
+  content: "";
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(255, 255, 255, .05) 0 1px, transparent 1px 4px);
+  mix-blend-mode: screen; opacity: .5;
+}
+.hero-scrim::after {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: .05; mix-blend-mode: screen;
+}
+
+/* 玻璃卡片 */
+.card, .feature, .album, .chatter, .timecard, .item-card, .side-card, .quote-bar {
+  background: rgba(255, 255, 255, .55);
+  border: 1px solid rgba(255, 255, 255, .68);
+  border-radius: 1.5rem;
+  box-shadow: 0 1px 2px rgba(17, 17, 17, .04), 0 18px 40px -28px rgba(17, 17, 17, .5);
+}
+@supports (backdrop-filter: blur(10px)) {
+  .card, .feature, .chatter, .timecard, .item-card, .side-card, .quote-bar {
+    backdrop-filter: blur(10px) saturate(140%);
+  }
+}
+[data-theme="dark"] .card,
+[data-theme="dark"] .feature,
+[data-theme="dark"] .chatter,
+[data-theme="dark"] .timecard,
+[data-theme="dark"] .item-card,
+[data-theme="dark"] .side-card,
+[data-theme="dark"] .quote-bar {
+  background: rgba(24, 24, 24, .6);
+  border-color: rgba(255, 255, 255, .09);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .6), 0 24px 48px -32px rgba(0, 0, 0, .9);
+}
+.card:hover, .item-card:hover { transform: translateY(-2px); }
+.profile { border-radius: 1.5rem; }
+.profile::after { border-radius: 50%; }
+.album, .photo, .article-cover, .dash, .feature { border-radius: 1.5rem; }
+.photo, .photo button { border-radius: 1.25rem; }
+.photo { overflow: hidden; }
+.avatar { border-radius: .9rem; }
+.cover { box-shadow: 0 0 0 5px rgba(255, 255, 255, .6), 0 0 0 6px rgba(0, 0, 0, .06); }
+
+/* Hero 下方的搜索条（对应源站 SearchBar） */
+.hero-search { margin-top: 1.75rem; position: relative; z-index: 5; }
+.hero-search button {
+  width: 100%;
+  display: flex; align-items: center; gap: .75rem;
+  padding: 1rem 1.15rem;
+  background: rgba(255, 255, 255, .72);
+  border: 1px solid rgba(255, 255, 255, .8);
+  border-radius: 1rem;
+  box-shadow: 0 18px 44px -30px rgba(0, 0, 0, .6);
+  color: var(--paper-2);
+  font-family: var(--font-body);
+  font-size: .9375rem;
+  text-align: left;
+  transition: background-color .2s, border-color .2s;
+}
+.hero-search button:hover { background: rgba(255, 255, 255, .9); border-color: var(--ink-3); }
+.hero-search svg { width: 18px; height: 18px; flex: 0 0 auto; }
+.hero-search kbd {
+  margin-left: auto;
+  font-family: var(--font-mono); font-size: .5625rem; letter-spacing: .1em;
+  border: 1px solid var(--ink-3); border-radius: 3px; padding: .2rem .4rem; color: var(--paper-3);
+}
+[data-theme="dark"] .hero-search button { background: rgba(24, 24, 24, .78); border-color: rgba(255, 255, 255, .1); }
+@media (max-width: 640px) { .hero-search { margin-top: 1rem; } }
+
+/* 首页区块间距与源站一致（mt-12） */
+.section { margin-top: clamp(3rem, 6vw, 5rem); }
