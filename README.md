@@ -57,6 +57,12 @@ sed -i 's#/F-Grze-blog/#/新名字/#g' 404.html
 ```
 /
 ├── index.html                 首页（hero / 01 自我 / 02 内容 / 03 摄影 / 04 状态）
+├── about.html                 关于（简介 + 资料卡 + 活动记录）
+├── photowall.html             摄影（相册 + 灯箱）
+├── projects.html              项目
+├── friends.html               友链
+├── timeline.html              归档（按年份）
+├── music.html                 音乐（外链歌单）
 ├── 404.html                   自带样式的 404（不依赖外部资源）
 ├── posts/
 │   ├── index.html             归档
@@ -158,15 +164,17 @@ npx --yes esbuild@0.25.0 assets/js/main.js  --minify --outfile=assets/js/main.mi
 - 原 `posts/first.md` 与 `posts/2222.md` 是同一篇的两个副本，正文只有一句 "..."；`long-test-article.md` 结尾直接是 "## 测试用文章"。现在三篇合并为两篇可读正文，保留原标题与原意，并明确标注"待续"。
 - 相册、友链里的图片都指向 `bu.dusays.com` 的测试图，友链指向 PRTS wiki。新站只保留提供的三张照片，不做虚构内容。
 
-## 没有搬过来的部分（可按需补）
+## 页面覆盖情况
 
-原站还有 `/weather`、`/tree`（灵境，WebGL 炼金实验室）、`/music`、`/moments`、`/friends`、`/projects`、`/timeline`、`/status`、`/about` 共 9 个页面。没搬的原因分别是：
+已按源站补齐：首页、关于（`/about`）、摄影（`/photowall`）、项目（`/projects`）、友链（`/friends`）、归档（`/timeline`）、音乐（`/music`）、文章归档（`/posts`）、两篇文章、一篇杂谈、404。导航与页脚在 11 个页面里保持一致。
 
-- **weather**：依赖高德 + 彩云两个带 key 的实时接口，静态站只能用假数据；
-- **tree / music**：`DijiangModel.tsx`(52KB) + `AlchemyLab.tsx`(44KB) 是 three.js 场景，单页 JS 体积和 GPU 开销与"秒开"目标冲突；
-- **moments / friends / projects / timeline / about**：数据量很小（1 条项目、1 条友链），单独开页收益低。
+仍未搬的三个页面，原因都是「静态托管做不了」或「没有真实数据」：
 
-需要的话可以按页补：`projects` 和 `about` 最适合先做（纯静态、有真实数据）；`tree` 建议单独做懒加载路由，只在进入时下载 three.js。
+- **weather**：依赖高德 JS API + 彩云天气两个带 key 的实时接口。静态站只能编假数据，而且 key 会裸露在客户端（原站就是这么暴露的）。
+- **tree（灵境）**：`DijiangModel.tsx`(52 KB) + `AlchemyLab.tsx`(44 KB) 是两个 three.js 场景。要做得体面，必须单独做懒加载路由，进页面才下载；塞进主包会直接毁掉 LCP。
+- **moments（说说）**：源站数据来自运行时写入，仓库里没有内容文件，搬过来只会是空列表。
+
+`/status` 的仪表盘没有单独成页，直接放在首页 04 区块（时钟、运行天数、托管信息），避免为同一组数字开两个页面。
 
 ## 浏览器支持
 

@@ -611,9 +611,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* ---------- 8. Photowall ---------- */
 .photos { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1.25rem; grid-auto-rows: clamp(11rem, 21vw, 16rem); }
 .photo { position: relative; overflow: hidden; border: 1px solid var(--ink-3); border-radius: var(--radius); background: var(--ink-2); }
-.photo:nth-child(1) { grid-column: span 6; }
-.photo:nth-child(2) { grid-column: span 3; }
-.photo:nth-child(3) { grid-column: span 3; }
+.photos > .photo:nth-child(1) { grid-column: span 6; }
+.photos > .photo:nth-child(2) { grid-column: span 3; }
+.photos > .photo:nth-child(3) { grid-column: span 3; }
 .photo button { display: block; width: 100%; height: 100%; padding: 0; position: relative; }
 .photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 45%; transition: transform .9s var(--ease), filter .4s; }
 .photo button:hover img { transform: scale(1.035); }
@@ -714,8 +714,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- 11. Article pages ---------- */
 .article-head { padding-top: calc(var(--head-h) + clamp(3rem, 7vw, 5rem)); }
-.article-head .kicker { color: var(--paper-2); }
-.article-head .kicker::before { background: var(--paper-3); }
+.article-head .kicker, .page-head .kicker { color: var(--paper-2); }
+.article-head .kicker::before, .page-head .kicker::before { background: var(--paper-3); }
 .article-head h1 { font-size: clamp(2rem, 5vw, 3.25rem); font-style: italic; max-width: 40rem; }
 .article-meta { display: flex; flex-wrap: wrap; gap: .6rem 1.25rem; margin-top: 1.35rem; font-family: var(--font-mono); font-size: .625rem; letter-spacing: .18em; text-transform: uppercase; color: var(--paper-2); }
 .article-cover { margin-top: 2.5rem; border: 1px solid var(--ink-3); border-radius: var(--radius); overflow: hidden; max-height: 30rem; }
@@ -789,8 +789,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 1024px) {
   .col-7, .col-5 { grid-column: span 12; }
   .col-4, .col-8 { grid-column: span 12; }
-  .photo:nth-child(1) { grid-column: span 12; }
-  .photo:nth-child(2), .photo:nth-child(3) { grid-column: span 6; }
+  .photos > .photo:nth-child(1) { grid-column: span 12; }
+  .photos > .photo:nth-child(2), .photos > .photo:nth-child(3) { grid-column: span 6; }
   .foot-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 860px) {
@@ -838,7 +838,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .dash-clock { justify-content: flex-start; }
   .foot-grid { grid-template-columns: 1fr; }
   .profile-bottom { flex-direction: column; align-items: flex-start; }
-  .photo:nth-child(2), .photo:nth-child(3) { grid-column: span 12; }
+  .photos > .photo:nth-child(2), .photos > .photo:nth-child(3) { grid-column: span 12; }
   .photos { grid-auto-rows: 12rem; }
   .article-body { font-size: 1rem; }
 }
@@ -863,4 +863,78 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .article-head h1 { text-wrap: wrap; }
 @media (max-width: 640px) {
   .article-head h1 { font-size: clamp(1.75rem, 7.4vw, 2.2rem); max-width: 100%; }
+}
+
+/* ============================================================
+   14. 二级页面：关于 / 摄影 / 项目 / 友链 / 归档 / 音乐
+   ============================================================ */
+.page-head { padding-top: calc(var(--head-h) + clamp(3rem, 7vw, 5rem)); }
+.page-head h1 { font-size: clamp(2.1rem, 5.5vw, 3.4rem); font-style: italic; max-width: 34rem; }
+.page-sub { margin-top: 1rem; font-size: 1rem; color: var(--paper-1); max-width: 40rem; }
+.page-rule { margin-top: 2rem; height: 1px; background: var(--ink-3); }
+
+/* 关于 */
+.about-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); margin-top: clamp(2.5rem, 5vw, 4rem); }
+.about-body { max-width: none; margin: 0; }
+.about-body h2:first-of-type { margin-top: 2rem; }
+.side-stack { display: flex; flex-direction: column; gap: 1.25rem; }
+.side-card { border: 1px solid var(--ink-3); border-radius: var(--radius); background: var(--ink-1); padding: 1.25rem 1.35rem; }
+.side-card h2 { margin-top: .45rem; font-size: 1.05rem; }
+.side-list { margin-top: .8rem; display: flex; flex-direction: column; gap: .55rem; font-size: .875rem; }
+.side-list div { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px dashed var(--ink-3); padding-bottom: .5rem; }
+.side-list div:last-child { border-bottom: 0; padding-bottom: 0; }
+.side-list dt, .side-list .k { font-family: var(--font-mono); font-size: .5625rem; letter-spacing: .16em; text-transform: uppercase; color: var(--paper-2); }
+.side-list .v { color: var(--paper-0); text-align: right; }
+
+/* 活动记录 */
+.activity { margin-top: 1rem; border-top: 1px solid var(--ink-3); }
+.activity a { display: grid; grid-template-columns: 6.5rem 4rem 1fr; align-items: baseline; gap: 1rem; padding: .95rem 0; border-bottom: 1px solid var(--ink-3); transition: color .2s, padding-left .25s var(--ease); }
+.activity a:hover { color: var(--accent); padding-left: .25rem; }
+.activity time { font-family: var(--font-mono); font-size: .625rem; letter-spacing: .12em; color: var(--paper-2); }
+.activity .kind { font-family: var(--font-mono); font-size: .5625rem; letter-spacing: .16em; text-transform: uppercase; color: var(--paper-2); border: 1px solid var(--ink-3); border-radius: 2px; padding: .1rem .35rem; justify-self: start; }
+.activity .t { font-family: var(--font-display); font-style: italic; font-size: 1.05rem; color: var(--paper-0); }
+.activity a:hover .t { color: var(--accent); }
+
+/* 摄影 */
+.album-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-top: clamp(2.5rem, 5vw, 4rem); padding-bottom: .9rem; border-bottom: 1px solid var(--ink-3); }
+.album-head h2 { font-size: 1.4rem; font-style: italic; }
+.photo-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-top: 1.25rem; }
+.photo-grid .photo { aspect-ratio: 4 / 3; }
+.photo-grid .photo.wide { grid-column: span 2; aspect-ratio: 16 / 8; }
+.photo-grid .photo.tall { aspect-ratio: 4 / 5; }
+
+/* 项目 / 友链 */
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-top: clamp(2.5rem, 5vw, 4rem); }
+.item-card { border: 1px solid var(--ink-3); border-radius: var(--radius); background: var(--ink-1); padding: 1.5rem; display: flex; flex-direction: column; gap: .7rem; transition: border-color .25s, transform .35s var(--ease); }
+.item-card:hover { border-color: var(--paper-3); transform: translateY(-2px); }
+.item-card .top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.item-card h2 { font-size: 1.2rem; font-style: italic; }
+.item-card p { font-size: .875rem; color: var(--paper-1); }
+.item-card .foot { margin-top: auto; padding-top: .6rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.item-card .go { font-family: var(--font-mono); font-size: .625rem; letter-spacing: .18em; text-transform: uppercase; color: var(--paper-1); border-bottom: 1px solid var(--paper-3); }
+.item-card:hover .go { color: var(--accent); border-color: var(--accent); }
+.avatar-sm { width: 2.75rem; height: 2.75rem; border-radius: 50%; overflow: hidden; border: 1px solid var(--ink-3); flex: 0 0 auto; display: grid; place-items: center; background: var(--ink-2); font-family: var(--font-mono); font-size: .7rem; color: var(--paper-2); }
+.avatar-sm img { width: 100%; height: 100%; object-fit: cover; }
+
+/* 归档 */
+.year-group { margin-top: clamp(2rem, 4vw, 3rem); }
+.year-group h2 { font-family: var(--font-mono); font-size: .75rem; letter-spacing: .3em; color: var(--paper-2); text-transform: uppercase; padding-bottom: .75rem; border-bottom: 1px solid var(--ink-3); }
+.archive-item h2 a { transition: color .2s; }
+.archive-item h2 a:hover { color: var(--accent); }
+
+/* 音乐 */
+.tracklist { margin-top: clamp(2.5rem, 5vw, 4rem); border-top: 1px solid var(--ink-3); }
+.track { display: grid; grid-template-columns: 2.5rem 1fr auto; align-items: center; gap: 1.25rem; padding: 1.15rem 0; border-bottom: 1px solid var(--ink-3); }
+.track .no { font-family: var(--font-mono); font-size: .6875rem; color: var(--paper-3); }
+.track .name { font-family: var(--font-display); font-size: 1.15rem; }
+.track .by { font-size: .8125rem; color: var(--paper-2); margin-top: .15rem; }
+.track .act { font-family: var(--font-mono); font-size: .625rem; letter-spacing: .16em; text-transform: uppercase; color: var(--paper-1); border: 1px solid var(--ink-3); padding: .35rem .6rem; border-radius: 2px; transition: background-color .2s, color .2s, border-color .2s; }
+.track .act:hover { background: var(--paper-0); color: var(--ink-0); border-color: var(--paper-0); }
+
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .cards, .photo-grid { grid-template-columns: 1fr; }
+  .photo-grid .photo.wide { grid-column: span 1; }
+  .activity a { grid-template-columns: 5rem 1fr; row-gap: .3rem; }
+  .activity .kind { display: none; }
 }

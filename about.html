@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>关于我 · F-Grze の光影日志</title>
+<meta name="description" content="F-Grze：机械设计制造及其自动化，摄影爱好者，贵州，22 岁。">
+<meta name="author" content="F-Grze">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://f-grze.github.io/F-Grze-blog/about.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="F-Grze の光影日志" href="feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于我">
+<meta property="og:description" content="F-Grze：机械设计制造及其自动化，摄影爱好者，贵州，22 岁。">
+<meta property="og:image" content="https://f-grze.github.io/F-Grze-blog/assets/img/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'light' && t !== 'dark') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要内容</a>
+
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="brand" href="">F-Grze<em>の</em>光影日志</a>
+    <nav class="nav" aria-label="主导航">
+      <a href="about.html">关于</a>
+      <a href="posts/">文章</a>
+      <a href="photowall.html">摄影</a>
+      <a href="projects.html">项目</a>
+      <a href="posts/">归档</a>
+    </nav>
+    <div class="head-tools">
+      <a class="icon-btn" href="feed.xml" aria-label="RSS 订阅">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.6" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="切换深浅色">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.2M12 19.8V22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2 12h2.2M19.8 12H22M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" style="display:none"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开导航菜单">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="移动端导航" hidden>
+    <a href="about.html">关于 <span>01</span></a>
+    <a href="posts/">文章 <span>02</span></a>
+    <a href="photowall.html">摄影 <span>03</span></a>
+    <a href="projects.html">项目 <span>04</span></a>
+    <a href="friends.html">友链 <span>05</span></a>
+    <a href="posts/">归档 <span>ARCHIVE</span></a>
+  </nav>
+</header>
+
+<main id="main">
+  <header class="wrap page-head">
+    <p class="kicker">ABOUT · F-GRZE</p>
+    <h1>关于我</h1>
+    <p class="page-sub">机械设计制造及其自动化 · 摄影爱好者 · 22 岁 · 贵州</p>
+  </header>
+
+  <div class="wrap about-grid">
+    <div class="article-body about-body">
+      <p data-dropcap>你好，我是 F-Grze，也可以叫我夏林。22 岁，机械设计应届生，业余玩摄影和摄像。白天在图纸上算公差，晚上扛相机去拍夜景。</p>
+
+      <h2>在用的工具</h2>
+      <ul>
+        <li><strong>建模 / 制图</strong> —— CAD · SolidWorks · UG NX</li>
+        <li><strong>加工</strong> —— 熟悉 CNC 工艺与公差标准</li>
+        <li><strong>拍摄</strong> —— 摄影摄像，简单的后期剪辑</li>
+      </ul>
+
+      <h2>这个站</h2>
+      <p>原版是一套 Next.js 16 的项目，页面重、依赖多。现在重做成纯静态：一张首屏图、一个 6 KB 的 CSS、一个 5.6 KB 的脚本，没有框架、没有字体请求、没有第三方追踪。文章直接写 HTML，图片是 WebP 三档尺寸。</p>
+      <p>写的都是过程记录：跑模拟踩过的坑、夜里拍到的光，还有没头没尾的想法。</p>
+
+      <h2>联系方式</h2>
+      <p>邮箱 <a href="mailto:2513810332@qq.com">2513810332@qq.com</a>，QQ 2513810032，抖音 <a href="https://www.douyin.com/user/MS4wLjABAAAAJaAjsx0xAyQ-sXUVlC7HD1X0GJKjgRdaICjdRfOP278gkcYqyB4tEGC4iY7WHdK8" target="_blank" rel="noopener noreferrer">@F-Grze</a>。站里没有评论系统，想说话直接发邮件。</p>
+    </div>
+
+    <aside class="side-stack">
+      <div class="side-card">
+        <div class="mono">// PROFILE</div>
+        <h2>F-Grze · 夏林</h2>
+        <div class="side-list">
+          <div><span class="k">坐标</span><span class="v">贵州</span></div>
+          <div><span class="k">年龄</span><span class="v">22</span></div>
+          <div><span class="k">专业</span><span class="v">机械设计制造</span></div>
+          <div><span class="k">爱好</span><span class="v">摄影 / 摄像</span></div>
+          <div><span class="k">建站</span><span class="v">2026.03</span></div>
+        </div>
+      </div>
+      <div class="side-card">
+        <div class="mono">// NOW</div>
+        <h2>最近在做</h2>
+        <div class="side-list">
+          <div><span class="k">模拟</span><span class="v">GROMACS 小体系</span></div>
+          <div><span class="k">拍摄</span><span class="v">夜景 / 长曝</span></div>
+          <div><span class="k">折腾</span><span class="v">把站搬成静态</span></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <section class="wrap section">
+    <header class="section-head">
+      <div>
+        <div class="section-num">// 活动记录</div>
+        <h2 class="section-title">Recent</h2>
+        <p class="section-sub">文章与碎碎念，按时间倒序。</p>
+      </div>
+      <a class="section-link" href="timeline.html">全部归档 →</a>
+    </header>
+    <div class="activity">
+      <a href="posts/kinase-screening.html"><time datetime="2026-03-26">2026.03.26</time><span class="kind">文章</span><span class="t">多靶点激酶抑制剂筛选：从虚拟到现实的漫长征途</span></a>
+      <a href="chatters/originium.html"><time datetime="2026-03-25">2026.03.25</time><span class="kind">杂谈</span><span class="t">源石结晶与目标蛋白结合的猜想</span></a>
+      <a href="posts/gromacs-2025.html"><time datetime="2026-03-24">2026.03.24</time><span class="kind">文章</span><span class="t">GROMACS 2025 分子动力学模拟初探</span></a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-rule">COLOPHON</div>
+    <div class="foot-grid">
+      <div>
+        <div class="section-num">// ABOUT</div>
+        <h3>F-Grze · 夏林</h3>
+        <p>机械设计制造及其自动化，业余玩摄影与摄像。这里放文章、照片，和一些没头没尾的想法。</p>
+      </div>
+      <div>
+        <div class="section-num">// SECTIONS</div>
+        <ul class="foot-list">
+          <li><a href="posts/">文章归档</a></li>
+          <li><a href="photowall.html">摄影</a></li>
+          <li><a href="projects.html">项目</a></li>
+          <li><a href="friends.html">友链</a></li>
+          <li><a href="music.html">音乐</a></li>
+          <li><a href="about.html">关于</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="section-num">// CONTACT</div>
+        <ul class="foot-list">
+          <li><span class="k">EMAIL</span><a href="mailto:2513810332@qq.com">2513810332@qq.com</a></li>
+          <li><span class="k">QQ</span><button type="button" data-copy="2513810032" style="font-size:.875rem;color:var(--paper-1)">2513810032</button></li>
+          <li><span class="k">DOUYIN</span><a href="https://www.douyin.com/user/MS4wLjABAAAAJaAjsx0xAyQ-sXUVlC7HD1X0GJKjgRdaICjdRfOP278gkcYqyB4tEGC4iY7WHdK8" target="_blank" rel="noopener noreferrer">@F-Grze</a></li>
+          <li><span class="k">FEED</span><a href="feed.xml">RSS</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="colophon">
+      <span>© 2026 F-Grze · 光影日志</span>
+      <span>SET IN GEORGIA &amp; SONG · NO FRAMEWORK</span>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
